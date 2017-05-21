@@ -1,0 +1,8 @@
+# Data files
+data/*
+
+# Mac files
+.DS_Store
+
+# PyCharm files
+.idea/*
