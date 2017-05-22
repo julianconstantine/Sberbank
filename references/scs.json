@@ -1,0 +1,1224 @@
+{
+    "price_doc": {
+       "Type": "numeric"
+    },
+    "id": {
+        "Type": "factor"
+    },
+	"timestamp": {
+        "Type": "datetime"
+    },
+	"full_sq": {
+        "Type": "numeric"
+    },
+	"life_sq": {
+        "Type": "numeric"
+    },
+	"floor": {
+        "Type": "numeric"
+    },
+	"max_floor": {
+        "Type": "numeric"
+    },
+	"material": {
+        "Type": "factor"
+    },
+	"build_year": {
+        "Type": "numeric"
+    },
+	"num_room": {
+        "Type": "numeric"
+    },
+	"kitch_sq": {
+        "Type": "numeric"
+    },
+	"state": {
+        "Type": "factor"
+    },
+	"product_type": {
+        "Type": "factor"
+    },
+	"sub_area": {
+        "Type": "factor"
+    },
+ 	"full_all": {
+        "Type": "numeric"
+    },
+	"male_f": {
+        "Type": "numeric"
+    },
+	"female_f": {
+        "Type": "numeric"
+    },
+	"young_all": {
+        "Type": "numeric"
+    },
+	"young_male": {
+        "Type": "numeric"
+    },
+	"young_female": {
+        "Type": "numeric"
+    },
+	"work_all": {
+        "Type": "numeric"
+    },
+	"work_male": {
+        "Type": "numeric"
+    },
+	"work_female": {
+        "Type": "numeric"
+    },
+	"elder_all": {
+        "Type": "numeric"
+    },
+	"elder_male": {
+        "Type": "numeric"
+    },
+	"elder_female": {
+        "Type": "numeric"
+    },
+	"0_6_all": {
+        "Type": "numeric"
+    },
+	"0_6_male": {
+        "Type": "numeric"
+    },
+	"0_6_female": {
+        "Type": "numeric"
+    },
+	"7_14_all": {
+        "Type": "numeric"
+    },
+	"7_14_male": {
+        "Type": "numeric"
+    },
+	"7_14_female": {
+        "Type": "numeric"
+    },
+	"0_17_all": {
+        "Type": "numeric"
+    },
+	"0_17_male": {
+        "Type": "numeric"
+    },
+	"0_17_female": {
+        "Type": "numeric"
+    },
+	"16_29_all": {
+        "Type": "numeric"
+    },
+	"16_29_male": {
+        "Type": "numeric"
+    },
+	"16_29_female": {
+        "Type": "numeric"
+    },
+	"0_13_all": {
+        "Type": "numeric"
+    },
+	"0_13_male": {
+        "Type": "numeric"
+    },
+	"0_13_female": {
+        "Type": "numeric"
+    },
+	"area_m": {
+        "Type": "numeric"
+    },
+	"raion_popul": {
+        "Type": "numeric"
+    },
+
+    "green_zone_part": {
+        "Type": "numeric"
+    },
+	"indust_part": {
+        "Type": "numeric"
+    },
+	"children_preschool": {
+        "Type": "numeric"
+    },
+	"preschool_quota": {
+        "Type": "numeric"
+    },
+	"preschool_education_centers_raion": {
+        "Type": "numeric"
+    },
+	"children_school": {
+        "Type": "numeric"
+    },
+	"school_quota": {
+        "Type": "numeric"
+    },
+	"school_education_centers_raion": {
+        "Type": "numeric"
+    },
+	"school_education_centers_top_20_raion": {
+        "Type": "numeric"
+    },
+	"hospital_beds_raion": {
+        "Type": "numeric"
+    },
+	"healthcare_centers_raion": {
+        "Type": "numeric"
+    },
+	"university_top_20_raion": {
+        "Type": "numeric"
+    },
+	"sport_objects_raion": {
+        "Type": "numeric"
+    },
+	"additional_education_raion": {
+        "Type": "numeric"
+    },
+	"culture_objects_top_25": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"culture_objects_top_25_raion": {
+        "Type": "numeric"
+    },
+	"shopping_centers_raion": {
+        "Type": "numeric"
+    },
+	"office_raion": {
+        "Type": "numeric"
+    },
+	"thermal_power_plant_raion": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"incineration_raion": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"oil_chemistry_raion": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"radiation_raion": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"railroad_terminal_raion": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"big_market_raion": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"nuclear_reactor_raion": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"detention_facility_raion": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"raion_build_count_with_material_info": {
+        "Type": "numeric"
+    },
+	"build_count_block": {
+        "Type": "numeric"
+    },
+	"build_count_wood": {
+        "Type": "numeric"
+    },
+	"build_count_frame": {
+        "Type": "numeric"
+    },
+	"build_count_brick": {
+        "Type": "numeric"
+    },
+	"build_count_monolith": {
+        "Type": "numeric"
+    },
+	"build_count_panel": {
+        "Type": "numeric"
+    },
+	"build_count_foam": {
+        "Type": "numeric"
+    },
+	"build_count_slag": {
+        "Type": "numeric"
+    },
+	"build_count_mix": {
+        "Type": "numeric"
+    },
+	"raion_build_count_with_builddate_info": {
+        "Type": "numeric"
+    },
+	"build_count_before_1920": {
+        "Type": "numeric"
+    },
+	"build_count_1921-1945": {
+        "Type": "numeric"
+    },
+	"build_count_1946-1970": {
+        "Type": "numeric"
+    },
+	"build_count_1971-1995": {
+        "Type": "numeric"
+    },
+	"build_count_after_1995": {
+        "Type": "numeric"
+    },
+    "ID_metro": {
+        "Type": "factor"
+    },
+	"metro_min_avto": {
+        "Type": "numeric"
+    },
+	"metro_km_avto": {
+        "Type": "numeric"
+    },
+	"metro_min_walk": {
+        "Type": "numeric"
+    },
+	"metro_km_walk": {
+        "Type": "numeric"
+    },
+	"kindergarten_km": {
+        "Type": "numeric"
+    },
+	"school_km": {
+        "Type": "numeric"
+    },
+	"park_km": {
+        "Type": "numeric"
+    },
+	"green_zone_km": {
+        "Type": "numeric"
+    },
+	"industrial_km": {
+        "Type": "numeric"
+    },
+	"water_treatment_km": {
+        "Type": "numeric"
+    },
+	"cemetery_km": {
+        "Type": "numeric"
+    },
+	"incineration_km": {
+        "Type": "numeric"
+    },
+	"railroad_station_walk_km": {
+        "Type": "numeric"
+    },
+	"railroad_station_walk_min": {
+        "Type": "numeric"
+    },
+	"ID_railroad_station_walk": {
+        "Type": "factor"
+    },
+	"railroad_station_avto_km": {
+        "Type": "numeric"
+    },
+	"railroad_station_avto_min": {
+        "Type": "numeric"
+    },
+	"ID_railroad_station_avto": {
+        "Type": "factor"
+    },
+	"public_transport_station_km": {
+        "Type": "numeric"
+    },
+	"public_transport_station_min_walk": {
+        "Type": "numeric"
+    },
+	"water_km": {
+        "Type": "numeric"
+    },
+	"water_1line": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"mkad_km": {
+        "Type": "numeric"
+    },
+	"ttk_km": {
+        "Type": "numeric"
+    },
+	"sadovoe_km": {
+        "Type": "numeric"
+    },
+	"bulvar_ring_km": {
+        "Type": "numeric"
+    },
+	"kremlin_km": {
+        "Type": "numeric"
+    },
+	"big_road1_km": {
+        "Type": "numeric"
+    },
+	"ID_big_road1": {
+        "Type": "factor"
+    },
+	"big_road1_1line": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"big_road2_km": {
+        "Type": "numeric"
+    },
+	"ID_big_road2": {
+        "Type": "factor"
+    },
+	"railroad_km": {
+        "Type": "numeric"
+    },
+	"railroad_1line": {
+        "Type": "logical",
+        "Mapping": {
+            "yes": 1.0,
+            "no": 0.0
+        }
+    },
+	"zd_vokzaly_avto_km": {
+        "Type": "numeric"
+    },
+	"ID_railroad_terminal": {
+        "Type": "factor"
+    },
+	"bus_terminal_avto_km": {
+        "Type": "numeric"
+    },
+	"ID_bus_terminal": {
+        "Type": "factor"
+    },
+	"oil_chemistry_km": {
+        "Type": "numeric"
+    },
+	"nuclear_reactor_km": {
+        "Type": "numeric"
+    },
+	"radiation_km": {
+        "Type": "numeric"
+    },
+	"power_transmission_line_km": {
+        "Type": "numeric"
+    },
+	"thermal_power_plant_km": {
+        "Type": "numeric"
+    },
+	"ts_km": {
+        "Type": "numeric"
+    },
+	"big_market_km": {
+        "Type": "numeric"
+    },
+	"market_shop_km": {
+        "Type": "numeric"
+    },
+	"fitness_km": {
+        "Type": "numeric"
+    },
+	"swim_pool_km": {
+        "Type": "numeric"
+    },
+	"ice_rink_km": {
+        "Type": "numeric"
+    },
+	"stadium_km": {
+        "Type": "numeric"
+    },
+	"basketball_km": {
+        "Type": "numeric"
+    },
+	"hospice_morgue_km": {
+        "Type": "numeric"
+    },
+	"detention_facility_km": {
+        "Type": "numeric"
+    },
+	"public_healthcare_km": {
+        "Type": "numeric"
+    },
+	"university_km": {
+        "Type": "numeric"
+    },
+	"workplaces_km": {
+        "Type": "numeric"
+    },
+	"shopping_centers_km": {
+        "Type": "numeric"
+    },
+	"office_km": {
+        "Type": "numeric"
+    },
+	"additional_education_km": {
+        "Type": "numeric"
+    },
+	"preschool_km": {
+        "Type": "numeric"
+    },
+	"big_church_km": {
+        "Type": "numeric"
+    },
+	"church_synagogue_km": {
+        "Type": "numeric"
+    },
+	"mosque_km": {
+        "Type": "numeric"
+    },
+	"theater_km": {
+        "Type": "numeric"
+    },
+	"museum_km": {
+        "Type": "numeric"
+    },
+	"exhibition_km": {
+        "Type": "numeric"
+    },
+	"catering_km": {
+        "Type": "numeric"
+    },
+	"ecology": {
+        "Type": "factor"
+    },
+	"green_part_500": {
+        "Type": "numeric"
+    },
+	"prom_part_500": {
+        "Type": "numeric"
+    },
+	"office_count_500": {
+        "Type": "numeric"
+    },
+	"office_sqm_500": {
+        "Type": "numeric"
+    },
+	"trc_count_500": {
+        "Type": "numeric"
+    },
+	"trc_sqm_500": {
+        "Type": "numeric"
+    },
+	"cafe_count_500": {
+        "Type": "numeric"
+    },
+	"cafe_sum_500_min_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_sum_500_max_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_avg_price_500": {
+        "Type": "numeric"
+    },
+	"cafe_count_500_na_price": {
+        "Type": "numeric"
+    },
+	"cafe_count_500_price_500": {
+        "Type": "numeric"
+    },
+	"cafe_count_500_price_1000": {
+        "Type": "numeric"
+    },
+	"cafe_count_500_price_1500": {
+        "Type": "numeric"
+    },
+	"cafe_count_500_price_2500": {
+        "Type": "numeric"
+    },
+	"cafe_count_500_price_4000": {
+        "Type": "numeric"
+    },
+	"cafe_count_500_price_high": {
+        "Type": "numeric"
+    },
+	"big_church_count_500": {
+        "Type": "numeric"
+    },
+	"church_count_500": {
+        "Type": "numeric"
+    },
+	"mosque_count_500": {
+        "Type": "numeric"
+    },
+	"leisure_count_500": {
+        "Type": "numeric"
+    },
+	"sport_count_500": {
+        "Type": "numeric"
+    },
+	"market_count_500": {
+        "Type": "numeric"
+    },
+	"green_part_1000": {
+        "Type": "numeric"
+    },
+	"prom_part_1000": {
+        "Type": "numeric"
+    },
+	"office_count_1000": {
+        "Type": "numeric"
+    },
+	"office_sqm_1000": {
+        "Type": "numeric"
+    },
+	"trc_count_1000": {
+        "Type": "numeric"
+    },
+	"trc_sqm_1000": {
+        "Type": "numeric"
+    },
+	"cafe_count_1000": {
+        "Type": "numeric"
+    },
+	"cafe_sum_1000_min_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_sum_1000_max_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_avg_price_1000": {
+        "Type": "numeric"
+    },
+	"cafe_count_1000_na_price": {
+        "Type": "numeric"
+    },
+	"cafe_count_1000_price_500": {
+        "Type": "numeric"
+    },
+	"cafe_count_1000_price_1000": {
+        "Type": "numeric"
+    },
+	"cafe_count_1000_price_1500": {
+        "Type": "numeric"
+    },
+	"cafe_count_1000_price_2500": {
+        "Type": "numeric"
+    },
+	"cafe_count_1000_price_4000": {
+        "Type": "numeric"
+    },
+	"cafe_count_1000_price_high": {
+        "Type": "numeric"
+    },
+	"big_church_count_1000": {
+        "Type": "numeric"
+    },
+	"church_count_1000": {
+        "Type": "numeric"
+    },
+	"mosque_count_1000": {
+        "Type": "numeric"
+    },
+	"leisure_count_1000": {
+        "Type": "numeric"
+    },
+	"sport_count_1000": {
+        "Type": "numeric"
+    },
+	"market_count_1000": {
+        "Type": "numeric"
+    },
+	"green_part_1500": {
+        "Type": "numeric"
+    },
+	"prom_part_1500": {
+        "Type": "numeric"
+    },
+	"office_count_1500": {
+        "Type": "numeric"
+    },
+	"office_sqm_1500": {
+        "Type": "numeric"
+    },
+	"trc_count_1500": {
+        "Type": "numeric"
+    },
+	"trc_sqm_1500": {
+        "Type": "numeric"
+    },
+	"cafe_count_1500": {
+        "Type": "numeric"
+    },
+	"cafe_sum_1500_min_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_sum_1500_max_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_avg_price_1500": {
+        "Type": "numeric"
+    },
+	"cafe_count_1500_na_price": {
+        "Type": "numeric"
+    },
+	"cafe_count_1500_price_500": {
+        "Type": "numeric"
+    },
+	"cafe_count_1500_price_1000": {
+        "Type": "numeric"
+    },
+	"cafe_count_1500_price_1500": {
+        "Type": "numeric"
+    },
+	"cafe_count_1500_price_2500": {
+        "Type": "numeric"
+    },
+	"cafe_count_1500_price_4000": {
+        "Type": "numeric"
+    },
+	"cafe_count_1500_price_high": {
+        "Type": "numeric"
+    },
+	"big_church_count_1500": {
+        "Type": "numeric"
+    },
+	"church_count_1500": {
+        "Type": "numeric"
+    },
+	"mosque_count_1500": {
+        "Type": "numeric"
+    },
+	"leisure_count_1500": {
+        "Type": "numeric"
+    },
+	"sport_count_1500": {
+        "Type": "numeric"
+    },
+	"market_count_1500": {
+        "Type": "numeric"
+    },
+	"green_part_2000": {
+        "Type": "numeric"
+    },
+	"prom_part_2000": {
+        "Type": "numeric"
+    },
+	"office_count_2000": {
+        "Type": "numeric"
+    },
+	"office_sqm_2000": {
+        "Type": "numeric"
+    },
+	"trc_count_2000": {
+        "Type": "numeric"
+    },
+	"trc_sqm_2000": {
+        "Type": "numeric"
+    },
+	"cafe_count_2000": {
+        "Type": "numeric"
+    },
+	"cafe_sum_2000_min_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_sum_2000_max_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_avg_price_2000": {
+        "Type": "numeric"
+    },
+	"cafe_count_2000_na_price": {
+        "Type": "numeric"
+    },
+	"cafe_count_2000_price_500": {
+        "Type": "numeric"
+    },
+	"cafe_count_2000_price_1000": {
+        "Type": "numeric"
+    },
+	"cafe_count_2000_price_1500": {
+        "Type": "numeric"
+    },
+	"cafe_count_2000_price_2500": {
+        "Type": "numeric"
+    },
+	"cafe_count_2000_price_4000": {
+        "Type": "numeric"
+    },
+	"cafe_count_2000_price_high": {
+        "Type": "numeric"
+    },
+	"big_church_count_2000": {
+        "Type": "numeric"
+    },
+	"church_count_2000": {
+        "Type": "numeric"
+    },
+	"mosque_count_2000": {
+        "Type": "numeric"
+    },
+	"leisure_count_2000": {
+        "Type": "numeric"
+    },
+	"sport_count_2000": {
+        "Type": "numeric"
+    },
+	"market_count_2000": {
+        "Type": "numeric"
+    },
+	"green_part_3000": {
+        "Type": "numeric"
+    },
+	"prom_part_3000": {
+        "Type": "numeric"
+    },
+	"office_count_3000": {
+        "Type": "numeric"
+    },
+	"office_sqm_3000": {
+        "Type": "numeric"
+    },
+	"trc_count_3000": {
+        "Type": "numeric"
+    },
+	"trc_sqm_3000": {
+        "Type": "numeric"
+    },
+	"cafe_count_3000": {
+        "Type": "numeric"
+    },
+	"cafe_sum_3000_min_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_sum_3000_max_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_avg_price_3000": {
+        "Type": "numeric"
+    },
+	"cafe_count_3000_na_price": {
+        "Type": "numeric"
+    },
+	"cafe_count_3000_price_500": {
+        "Type": "numeric"
+    },
+	"cafe_count_3000_price_1000": {
+        "Type": "numeric"
+    },
+	"cafe_count_3000_price_1500": {
+        "Type": "numeric"
+    },
+	"cafe_count_3000_price_2500": {
+        "Type": "numeric"
+    },
+	"cafe_count_3000_price_4000": {
+        "Type": "numeric"
+    },
+	"cafe_count_3000_price_high": {
+        "Type": "numeric"
+    },
+	"big_church_count_3000": {
+        "Type": "numeric"
+    },
+	"church_count_3000": {
+        "Type": "numeric"
+    },
+	"mosque_count_3000": {
+        "Type": "numeric"
+    },
+	"leisure_count_3000": {
+        "Type": "numeric"
+    },
+	"sport_count_3000": {
+        "Type": "numeric"
+    },
+	"market_count_3000": {
+        "Type": "numeric"
+    },
+	"green_part_5000": {
+        "Type": "numeric"
+    },
+	"prom_part_5000": {
+        "Type": "numeric"
+    },
+	"office_count_5000": {
+        "Type": "numeric"
+    },
+	"office_sqm_5000": {
+        "Type": "numeric"
+    },
+	"trc_count_5000": {
+        "Type": "numeric"
+    },
+	"trc_sqm_5000": {
+        "Type": "numeric"
+    },
+	"cafe_count_5000": {
+        "Type": "numeric"
+    },
+	"cafe_sum_5000_min_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_sum_5000_max_price_avg": {
+        "Type": "numeric"
+    },
+	"cafe_avg_price_5000": {
+        "Type": "numeric"
+    },
+	"cafe_count_5000_na_price": {
+        "Type": "numeric"
+    },
+	"cafe_count_5000_price_500": {
+        "Type": "numeric"
+    },
+	"cafe_count_5000_price_1000": {
+        "Type": "numeric"
+    },
+	"cafe_count_5000_price_1500": {
+        "Type": "numeric"
+    },
+	"cafe_count_5000_price_2500": {
+        "Type": "numeric"
+    },
+	"cafe_count_5000_price_4000": {
+        "Type": "numeric"
+    },
+	"cafe_count_5000_price_high": {
+        "Type": "numeric"
+    },
+	"big_church_count_5000": {
+        "Type": "numeric"
+    },
+	"church_count_5000": {
+        "Type": "numeric"
+    },
+	"mosque_count_5000": {
+        "Type": "numeric"
+    },
+	"leisure_count_5000": {
+        "Type": "numeric"
+    },
+	"sport_count_5000": {
+        "Type": "numeric"
+    },
+	"market_count_5000": {
+        "Type": "numeric"
+    },
+    "oil_urals": {
+        "Type": "numeric"
+    },
+    "gdp_quart": {
+        "Type": "numeric"
+    },
+    "gdp_quart_growth": {
+        "Type": "numeric"
+    },
+    "cpi": {
+        "Type": "numeric"
+    },
+    "ppi": {
+        "Type": "numeric"
+    },
+    "gdp_deflator": {
+        "Type": "numeric"
+    },
+    "balance_trade": {
+        "Type": "numeric"
+    },
+    "balance_trade_growth": {
+        "Type": "numeric"
+    },
+    "usdrub": {
+        "Type": "numeric"
+    },
+    "eurrub": {
+        "Type": "numeric"
+    },
+    "brent": {
+        "Type": "numeric"
+    },
+    "net_capital_export": {
+        "Type": "numeric"
+    },
+    "gdp_annual": {
+        "Type": "numeric"
+    },
+    "gdp_annual_growth": {
+        "Type": "numeric"
+    },
+    "average_provision_of_build_contract": {
+        "Type": "numeric"
+    },
+    "average_provision_of_build_contract_moscow": {
+        "Type": "numeric"
+    },
+    "rts": {
+        "Type": "numeric"
+    },
+    "micex": {
+        "Type": "numeric"
+    },
+    "micex_rgbi_tr": {
+        "Type": "numeric"
+    },
+    "micex_cbi_tr": {
+        "Type": "numeric"
+    },
+    "deposits_value": {
+        "Type": "numeric"
+    },
+    "deposits_growth": {
+        "Type": "numeric"
+    },
+    "deposits_rate": {
+        "Type": "numeric"
+    },
+    "mortgage_value": {
+        "Type": "numeric"
+    },
+    "mortgage_growth": {
+        "Type": "numeric"
+    },
+    "mortgage_rate": {
+        "Type": "numeric"
+    },
+    "grp": {
+        "Type": "numeric"
+    },
+    "grp_growth": {
+        "Type": "numeric"
+    },
+    "income_per_cap": {
+        "Type": "numeric"
+    },
+    "real_dispos_income_per_cap_growth": {
+        "Type": "numeric"
+    },
+    "salary": {
+        "Type": "numeric"
+    },
+    "salary_growth": {
+        "Type": "numeric"
+    },
+    "fixed_basket": {
+        "Type": "numeric"
+    },
+    "retail_trade_turnover": {
+        "Type": "numeric"
+    },
+    "retail_trade_turnover_per_cap": {
+        "Type": "numeric"
+    },
+    "retail_trade_turnover_growth": {
+        "Type": "numeric"
+    },
+    "labor_force": {
+        "Type": "numeric"
+    },
+    "unemployment": {
+        "Type": "numeric"
+    },
+    "employment": {
+        "Type": "numeric"
+    },
+    "invest_fixed_capital_per_cap": {
+        "Type": "numeric"
+    },
+    "invest_fixed_assets": {
+        "Type": "numeric"
+    },
+    "profitable_enterpr_share": {
+        "Type": "numeric"
+    },
+    "unprofitable_enterpr_share": {
+        "Type": "numeric"
+    },
+    "share_own_revenues": {
+        "Type": "numeric"
+    },
+    "overdue_wages_per_cap": {
+        "Type": "numeric"
+    },
+    "fin_res_per_cap": {
+        "Type": "numeric"
+    },
+    "marriages_per_1000_cap": {
+        "Type": "numeric"
+    },
+    "divorce_rate": {
+        "Type": "numeric"
+    },
+    "construction_value": {
+        "Type": "numeric"
+    },
+    "invest_fixed_assets_phys": {
+        "Type": "numeric"
+    },
+    "pop_natural_increase": {
+        "Type": "numeric"
+    },
+    "pop_migration": {
+        "Type": "numeric"
+    },
+    "pop_total_inc": {
+        "Type": "numeric"
+    },
+    "childbirth": {
+        "Type": "numeric"
+    },
+    "mortality": {
+        "Type": "numeric"
+    },
+    "housing_fund_sqm": {
+        "Type": "numeric"
+    },
+    "lodging_sqm_per_cap": {
+        "Type": "numeric"
+    },
+    "water_pipes_share": {
+        "Type": "numeric"
+    },
+    "baths_share": {
+        "Type": "numeric"
+    },
+    "sewerage_share": {
+        "Type": "numeric"
+    },
+    "gas_share": {
+        "Type": "numeric"
+    },
+    "hot_water_share": {
+        "Type": "numeric"
+    },
+    "electric_stove_share": {
+        "Type": "numeric"
+    },
+    "heating_share": {
+        "Type": "numeric"
+    },
+    "old_house_share": {
+        "Type": "numeric"
+    },
+    "average_life_exp": {
+        "Type": "numeric"
+    },
+    "infant_mortarity_per_1000_cap": {
+        "Type": "numeric"
+    },
+    "perinatal_mort_per_1000_cap": {
+        "Type": "numeric"
+    },
+    "incidence_population": {
+        "Type": "numeric"
+    },
+    "rent_price_4+room_bus": {
+        "Type": "numeric"
+    },
+    "rent_price_3room_bus": {
+        "Type": "numeric"
+    },
+    "rent_price_2room_bus": {
+        "Type": "numeric"
+    },
+    "rent_price_1room_bus": {
+        "Type": "numeric"
+    },
+    "rent_price_3room_eco": {
+        "Type": "numeric"
+    },
+    "rent_price_2room_eco": {
+        "Type": "numeric"
+    },
+    "rent_price_1room_eco": {
+        "Type": "numeric"
+    },
+    "load_of_teachers_preschool_per_teacher": {
+        "Type": "numeric"
+    },
+    "child_on_acc_pre_school": {
+        "Type": "numeric"
+    },
+    "load_of_teachers_school_per_teacher": {
+        "Type": "numeric"
+    },
+    "students_state_oneshift": {
+        "Type": "numeric"
+    },
+    "modern_education_share": {
+        "Type": "numeric"
+    },
+    "old_education_build_share": {
+        "Type": "numeric"
+    },
+    "provision_doctors": {
+        "Type": "numeric"
+    },
+    "provision_nurse": {
+        "Type": "numeric"
+    },
+    "load_on_doctors": {
+        "Type": "numeric"
+    },
+    "power_clinics": {
+        "Type": "numeric"
+    },
+    "hospital_beds_available_per_cap": {
+        "Type": "numeric"
+    },
+    "hospital_bed_occupancy_per_year": {
+        "Type": "numeric"
+    },
+    "provision_retail_space_sqm": {
+        "Type": "numeric"
+    },
+    "provision_retail_space_modern_sqm": {
+        "Type": "numeric"
+    },
+    "turnover_catering_per_cap": {
+        "Type": "numeric"
+    },
+    "theaters_viewers_per_1000_cap": {
+        "Type": "numeric"
+    },
+    "seats_theather_rfmin_per_100000_cap": {
+        "Type": "numeric"
+    },
+    "museum_visitis_per_100_cap": {
+        "Type": "numeric"
+    },
+    "bandwidth_sports": {
+        "Type": "numeric"
+    },
+    "population_reg_sports_share": {
+        "Type": "numeric"
+    },
+    "students_reg_sports_share": {
+        "Type": "numeric"
+    },
+    "apartment_build": {
+        "Type": "numeric"
+    },
+    "apartment_fund_sqm": {
+        "Type": "numeric"
+    }
+}
