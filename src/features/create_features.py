@@ -1,8 +1,40 @@
+from src.functions import floor_date, prepare_ts
+
 import pandas as pd
 import numpy as np
 
-import copy
 import json
+
+
+#####################
+# SCRIPT PARAMETERS #
+#####################
+
+# Flag to replace infinite values
+REPLACE_INFINITE = True
+
+# Method to replace infinite values
+REPLACE_INFINITE_METHOD = 'Null'
+
+# Flag to replace null values
+REPLACE_NULL_NUMERIC = False
+
+# Method to replace null values
+REPLACE_NULL_METHOD = 'Median'
+
+# Flag to create categorical dummies
+CREATE_CATEGORICAL_DUMMIES = False
+
+# Flag to encode categorical variables with numeric values
+ENCODE_CATEGORICAL = True
+
+# Flag to include time-series data
+INCLUDE_TS_DATA = True
+
+
+#################
+# LOAD DATASETS #
+#################
 
 # Read combined dataset
 combined = pd.read_pickle(path='data/interim/combined_clean.pkl')
@@ -10,33 +42,6 @@ combined = pd.read_pickle(path='data/interim/combined_clean.pkl')
 # Read in SCS
 with open('references/scs.json', mode='r') as f:
     scs = json.load(fp=f)
-
-
-def floor_date(x, unit='month'):
-    if unit == 'month':
-        y = str(x.year)
-        m = str(x.month)
-
-        s = y + '-' + m + '-01'
-
-        return pd.to_datetime(s)
-    else:
-        raise ValueError("Not yet implemented")
-
-
-###################
-# HELPER FEATURES #
-###################
-
-# CREATE VARIABLE: year_month
-# timestamp rounded down to the first of each month
-combined['year_month'] = combined['timestamp'].apply(lambda x: floor_date(x, unit='month'))
-
-# CREATE VARIABLE: year_month_lag1
-combined['year_month_lag1'] = combined['year_month'].apply(lambda x: floor_date(x-pd.Timedelta('30 days')))
-
-# CREATE VARIABLE: year_month_lag2
-combined['year_month_lag2'] = combined['year_month_lag1'].apply(lambda x: floor_date(x-pd.Timedelta('30 days')))
 
 
 #####################
@@ -82,83 +87,9 @@ combined['kitch_proportion'] = combined['kitch_sq']/combined['full_sq']
 # CREATE VARIABLE: extra_sq
 combined['extra_sq'] = combined['full_sq'] - combined['life_sq'] - combined['kitch_sq']
 
+
 # CREATE VARIABLE: age_at_sale
 combined['age_at_sale'] = combined['timestamp'].apply(lambda x: x.year) - combined['build_year']
-
-
-###################
-# MARKET FEATURES #
-###################
-
-# CREATE VARIABLE: properties_sold_current_month
-sales_per_month_train = combined.loc[combined['subset'] == 'train'].groupby('year_month', as_index=False).size()
-sales_per_month_train = sales_per_month_train.reset_index()
-sales_per_month_train.columns = ['year_month', 'properties_sold_current_month']
-
-# Merge on variable
-combined = pd.merge(combined, sales_per_month_train, on='year_month', how='left')
-
-# Fill NaNs with zeros
-combined.loc[pd.isnull(combined['properties_sold_current_month']), 'properties_sold_current_month'] = 0
-
-
-# CREATE VARIABLE: properties_sold_last_month
-sales_per_month_train = combined.loc[combined['subset'] == 'train'].groupby('year_month_lag1', as_index=False).size()
-sales_per_month_train = sales_per_month_train.reset_index()
-sales_per_month_train.columns = ['year_month_lag1', 'properties_sold_last_month']
-
-# Merge on variable
-combined = pd.merge(combined, sales_per_month_train, on='year_month_lag1', how='left')
-
-# Fill NaNs with zeros
-combined.loc[pd.isnull(combined['properties_sold_last_month']), 'properties_sold_last_month'] = 0
-
-
-# CREATE VARIABLE: properties_sold_last2_month
-sales_per_month_train = combined.loc[combined['subset'] == 'train'].groupby('year_month_lag2', as_index=False).size()
-sales_per_month_train = sales_per_month_train.reset_index()
-sales_per_month_train.columns = ['year_month_lag2', 'properties_sold_last2_month']
-
-# Merge on variable
-combined = pd.merge(combined, sales_per_month_train, on='year_month_lag2', how='left')
-
-# Fill NaNs with zeros
-combined.loc[pd.isnull(combined['properties_sold_last2_month']), 'properties_sold_last2_month'] = 0
-
-
-# CREATE VARIABLE: avg_sale_price_current_month
-avg_price_per_month_train = combined.loc[combined['subset'] == 'train'].groupby('year_month', as_index=False)['price_doc'].mean()
-avg_price_per_month_train = avg_price_per_month_train.rename(columns={'price_doc': 'avg_sale_price_current_month'})
-
-# Merge on variable
-combined = pd.merge(combined, avg_price_per_month_train, on='year_month', how='left')
-
-
-# CREATE VARIABLE: avg_sale_price_last_month
-avg_price_per_month_train = combined.loc[combined['subset'] == 'train'].groupby('year_month_lag1', as_index=False)['price_doc'].mean()
-avg_price_per_month_train = avg_price_per_month_train.rename(columns={'price_doc': 'avg_sale_price_last_month'})
-
-# Merge on variable
-combined = pd.merge(combined, avg_price_per_month_train, on='year_month_lag1', how='left')
-
-
-# CREATE VARIABLE: avg_sale_price_last2_month
-avg_price_per_month_train = combined.loc[combined['subset'] == 'train'].groupby('year_month_lag2', as_index=False)['price_doc'].mean()
-avg_price_per_month_train = avg_price_per_month_train.rename(columns={'price_doc': 'avg_sale_price_last2_month'})
-
-# Merge on variable
-combined = pd.merge(combined, avg_price_per_month_train, on='year_month_lag2', how='left')
-
-
-##################
-# RAION FEATURES #
-##################
-
-# CREATE VARIABLE: avg_price_per_raion
-avg_raion_prices = combined.loc[combined['subset'] == 'train'].groupby('sub_area', as_index=False)['price_doc'].mean()
-avg_raion_prices = avg_raion_prices.rename(columns={'price_doc': 'avg_price_per_raion'})
-
-combined = pd.merge(combined, avg_raion_prices, on='sub_area')
 
 
 # CREATE VARIABLE: avg_max_floor_per_raion
@@ -168,115 +99,30 @@ avg_raion_max_floors = avg_raion_max_floors.rename(columns={'max_floor': 'avg_ma
 combined = pd.merge(combined, avg_raion_max_floors, on='sub_area', how='left')
 
 
-# CREATE VARIABLE: avg_price_per_raion_current_month
-avg_raion_prices = combined.loc[combined['subset'] == 'train'].groupby(['sub_area', 'year_month'], as_index=False)['price_doc'].mean()
-avg_raion_prices = avg_raion_prices.rename(columns={'price_doc': 'avg_price_per_raion_current_month'})
-
-combined = pd.merge(combined, avg_raion_prices, on=['sub_area', 'year_month'], how='left')
-
-
-# CREATE VARIABLE: avg_price_per_raion_last_month
-avg_raion_prices = combined.loc[combined['subset'] == 'train'].groupby(['sub_area', 'year_month_lag1'], as_index=False)['price_doc'].mean()
-avg_raion_prices = avg_raion_prices.rename(columns={'price_doc': 'avg_price_per_raion_last_month'})
-
-combined = pd.merge(combined, avg_raion_prices, on=['sub_area', 'year_month_lag1'], how='left')
-
-
-# CREATE VARIABLE: avg_price_per_raion_last2_month
-avg_raion_prices = combined.loc[combined['subset'] == 'train'].groupby(['sub_area', 'year_month_lag2'], as_index=False)['price_doc'].mean()
-avg_raion_prices = avg_raion_prices.rename(columns={'price_doc': 'avg_price_per_raion_last2_month'})
-
-combined = pd.merge(combined, avg_raion_prices, on=['sub_area', 'year_month_lag2'], how='left')
-
-
-#####################
-# BUILDING FEATURES #
-#####################
-
 # CREATE VARIABLE: apartment_id
 # Use raion (sub_area) + distance from metro station to infer apartment building identity
 # Link: https://www.kaggle.com/c/sberbank-russian-housing-market/discussion/33269
 combined['apartment_id'] = (combined['sub_area'] + combined['metro_km_avto'].astype(str))
 
-# Alternatives for inferring apartment_id (I think the original way is fine)
-temp = combined.groupby(['metro_km_avto', 'build_year']).size()
-temp.shape  # 13,626
 
-temp = combined.groupby(['metro_km_avto', 'school_km']).size()
-temp.shape  # 13,640
+###########################
+# TIME-DEPENDENT FEATURES #
+###########################
 
-temp = combined.groupby(['metro_km_avto', 'school_km', 'catering_km']).size()
-temp.shape  # 13,640
+# Time-dependent features are aggregated at three levels:
+#   1. Building level
+#   2. Raion level
+#   3. Market level (city level)
 
-temp = combined.groupby(['metro_km_avto', 'school_km', 'exhibition_km']).size()
-temp.shape  # 13,640
+if INCLUDE_TS_DATA:
+    city_ts = prepare_ts(data=combined, level='city')
+    raion_ts = prepare_ts(data=combined, level='raion')
+    building_ts = prepare_ts(data=combined, level='building')
 
-temp = combined.groupby(['sub_area', 'metro_km_avto', 'school_km', 'catering_km', 'exhibition_km']).size()
-temp.shape  # 13,640
-
-temp = combined.groupby(['sub_area', 'metro_km_avto', 'school_km', 'catering_km', 'exhibition_km']).size()
-temp.shape  # 13,640
-
-
-# CREATE VARIABLE: sales_per_building_current_month
-df = combined.loc[combined['subset'] == 'train'].groupby(['apartment_id', 'year_month'], as_index=False).size()
-df = df.reset_index()
-df.columns = ['apartment_id', 'year_month', 'sales_per_building_current_month']
-
-# Merge together
-combined = pd.merge(combined, df, on=['apartment_id', 'year_month'], how='left')
-
-# Replace all NaNs with zeros
-combined.loc[pd.isnull(combined['sales_per_building_current_month']), 'sales_per_building_current_month'] = 0
-
-
-# CREATE VARIABLE: sales_per_building_last_month
-df = combined.loc[combined['subset'] == 'train'].groupby(['apartment_id', 'year_month_lag1'], as_index=False).size()
-df = df.reset_index()
-df.columns = ['apartment_id', 'year_month_lag1', 'sales_per_building_last_month']
-
-# Merge together
-combined = pd.merge(combined, df, on=['apartment_id', 'year_month_lag1'], how='left')
-
-# Replace all NaNs with zeros
-combined.loc[pd.isnull(combined['sales_per_building_last_month']), 'sales_per_building_last_month'] = 0
-
-
-# CREATE VARIABLE: sales_per_building_last2_month
-df = combined.loc[combined['subset'] == 'train'].groupby(['apartment_id', 'year_month_lag2'], as_index=False).size()
-df = df.reset_index()
-df.columns = ['apartment_id', 'year_month_lag2', 'sales_per_building_last2_month']
-
-# Merge together
-combined = pd.merge(combined, df, on=['apartment_id', 'year_month_lag2'], how='left')
-
-# Replace all NaNs with zeros
-combined.loc[pd.isnull(combined['sales_per_building_last2_month']), 'sales_per_building_last2_month'] = 0
-
-
-
-# CREATE VARIABLE: avg_sale_price_per_building_current_month
-df = combined.loc[combined['subset'] == 'train'].groupby(['apartment_id', 'year_month'], as_index=False)['price_doc'].mean()
-df.columns = ['apartment_id', 'year_month', 'avg_price_per_building_current_month']
-
-# Merge together (leave NaNs alone for now)
-combined = pd.merge(combined, df, on=['apartment_id', 'year_month'], how='left')
-
-
-# CREATE VARIABLE: avg_sale_price_per_building_last_month
-df = combined.loc[combined['subset'] == 'train'].groupby(['apartment_id', 'year_month_lag1'], as_index=False)['price_doc'].mean()
-df.columns = ['apartment_id', 'year_month_lag1', 'avg_price_per_building_last_month']
-
-# Merge together
-combined = pd.merge(combined, df, on=['apartment_id', 'year_month_lag1'], how='left')
-
-
-# CREATE VARIABLE: avg_sale_price_per_building_last2_month
-df = combined.loc[combined['subset'] == 'train'].groupby(['apartment_id', 'year_month_lag2'], as_index=False)['price_doc'].mean()
-df.columns = ['apartment_id', 'year_month_lag2', 'avg_price_per_building_last2_month']
-
-# Merge together
-combined = pd.merge(combined, df, on=['apartment_id', 'year_month_lag2'], how='left')
+    # Merge on time-dependent features
+    combined = pd.merge(combined, city_ts, on='year_month')
+    combined = pd.merge(combined, raion_ts, on=['year_month', 'sub_area'])
+    combined = pd.merge(combined, building_ts, on=['year_month', 'apartment_id'])
 
 
 #############################
@@ -332,44 +178,116 @@ combined['school_centers_per_capita'] = combined['children_school']/combined['sc
 combined['preschool_centers_per_capita'] = combined['children_preschool']/combined['preschool_education_centers_raion']
 
 
+# Some plots
+# out = combined.groupby(['year_month', 'product_type'], as_index=False).agg({'price_doc': np.mean})
+# sns.pointplot(x='year_month', y='price_doc', hue='product_type', data=out)
+
+# out = combined.groupby(['year_month', 'product_type']).size().reset_index()
+# out.columns = ['year_month', 'product_type', 'size']
+# sns.pointplot(x='year_month', y='size', hue='product_type', data=out)
+
+# out = combined.loc[(combined['product_type'] != 'Investment') | (combined['price_doc'] >= 1000000)].groupby(['year_month', 'product_type'], as_index=False).agg({'price_doc': np.mean})
+# sns.pointplot(x='year_month', y='price_doc', hue='product_type', data=out)
+
+
+########################
+# CATEGORICAL FEATURES #
+########################
+
+# 38,130 x 360
+print(combined.shape)
+
+# Categorical features to ignore
+ignore_vars = ['id', 'subset', 'apartment_id']
+
+categorical_features = []
+
+# Get list of categorical features
+for var in scs:
+    if var in combined.columns and var not in ignore_vars:
+        if scs[var]['Type'] == 'factor' or combined[var].dtype == object:
+            print(var, combined[var].nunique())
+            categorical_features.append(var)
+
+# Add a "missing" category to categorical features that are null
+for var in categorical_features:
+    combined.loc[combined[var].isnull(), var] = 'missing'
+
+if CREATE_CATEGORICAL_DUMMIES:
+    # Create dummies for every categorical variable
+    combined = pd.get_dummies(data=combined, columns=categorical_features, drop_first=True)
+
+    # Make sure everything is a float
+    for var in combined:
+        combined[var] = combined[var].astype(float)
+
+if ENCODE_CATEGORICAL:
+    # Go through and encode each variable categorical variable as a number
+    for var in categorical_features:
+        combined[var + '_numeric'] = pd.factorize(combined[var])[0]
+
+# Drop the original categorical variables
+combined.drop(labels=categorical_features, axis=1, inplace=True)
+
+# 38,130 x 360
+print(combined.shape)
+
+
 ########################
 # INFINITE REPLACEMENT #
 ########################
 
-for var in combined.columns:
-    # Replace any infinite values with NaNs
-    try:
-        combined.loc[combined[var] == np.inf, var] = np.nan
-        combined.loc[combined[var] == -np.inf, var] = np.nan
-    except TypeError:
-        pass
+if REPLACE_INFINITE:
+    if REPLACE_INFINITE_METHOD == 'Null':
+        # Replace infinite values with NaNs
+        for var in combined.columns:
+            # Replace any infinite values with NaNs
+            try:
+                combined.loc[combined[var] == np.inf, var] = np.nan
+                combined.loc[combined[var] == -np.inf, var] = np.nan
+            except TypeError:
+                pass
 
 
 ####################
 # NULL REPLACEMENT #
 ####################
 
-# Median replace all null values and create dummies indicating where the variable was missing; if variable is
-# categorical, just add a 'missing' category
-for var in combined.columns:
-    if combined[var].isnull().any():
-        if var in scs:
-            if scs[var]['Type'] == 'factor':
-                print("Adding 'missing' category to %s" % var)
-                combined.loc[pd.isnull(combined[var]), var] = 'missing'
-            else:
-                print("Median-replacing null values of %s" % var)
-                combined[var + '_null'] = pd.isnull(combined[var]).astype(float)
+if REPLACE_NULL_NUMERIC:
+    if REPLACE_NULL_METHOD == 'Median':
+        # Median replace all null values and create dummies indicating where the variable was missing; if variable is
+        # categorical, just add a 'missing' category
+        for var in combined.columns:
+            if combined[var].isnull().any():
+                if var in scs:
+                    if scs[var]['Type'] == 'factor':
+                        print("Adding 'missing' category to %s" % var)
+                        combined.loc[pd.isnull(combined[var]), var] = 'missing'
+                    else:
+                        print("Median-replacing null values of %s" % var)
+                        combined[var + '_null'] = pd.isnull(combined[var]).astype(float)
 
-                med = np.median(combined.loc[(combined['subset'] == 'train') & ~pd.isnull(combined[var]), var])
-                combined.loc[pd.isnull(combined[var]), var] = med
-        else:
-            # If not in SCS, assume it's numeric
-            print("Median-replacing null values of %s" % var)
-            combined[var + '_null'] = pd.isnull(combined[var]).astype(float)
+                        med = np.median(combined.loc[(combined['subset'] == 'train') & ~pd.isnull(combined[var]), var])
+                        combined.loc[pd.isnull(combined[var]), var] = med
+                else:
+                    # If not in SCS, assume it's numeric
+                    print("Median-replacing null values of %s" % var)
+                    combined[var + '_null'] = pd.isnull(combined[var]).astype(float)
 
-            med = np.median(combined.loc[(combined['subset'] == 'train') & ~pd.isnull(combined[var]), var])
-            combined.loc[pd.isnull(combined[var]), var] = med
+                    med = np.median(combined.loc[(combined['subset'] == 'train') & ~pd.isnull(combined[var]), var])
+                    combined.loc[pd.isnull(combined[var]), var] = med
+
+
+DATASET_NAME = 'combined'
 
 # Save the final dataset
-pd.to_pickle(obj=combined, path='data/processed/combined.pkl')
+if not REPLACE_NULL_NUMERIC:
+    DATASET_NAME += '_no_med_replace'
+
+if INCLUDE_TS_DATA:
+    DATASET_NAME += '_with_ts_data'
+
+DATASET_NAME += '.pkl'
+
+# Save the data
+pd.to_pickle(obj=combined, path='data/processed/' + DATASET_NAME)

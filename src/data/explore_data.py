@@ -262,3 +262,15 @@ train['sub_area'].nunique()
 # Poselenie Voskresenskoe            713
 # ...
 train['sub_area'].value_counts()
+
+
+#######################
+# PRICE DISTRIBUTIONS #
+#######################
+
+import matplotlib.pyplot as plt
+
+import seaborn as sns
+
+sns.distplot(np.log10(train.loc[train['product_type'] == 'Investment', 'price_doc']))
+sns.distplot(np.log10(train.loc[train['product_type'] != 'Investment', 'price_doc']))
